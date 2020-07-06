@@ -54,5 +54,14 @@ def list_all():
 
 
 @main.command('serialize')
-def serialize_only():
-    pass
+@click.argument('payload', nargs=1)
+@click.argument('args', nargs=-1)
+def serialize_only(payload, args):
+    constructor = getattr(payloads, payload, None)
+    if not constructor:
+        print('No Such Payload. run "phpgadgets list" for a full list')
+        exit(-1)
+    try:
+        print(constructor.construct(*args))
+    except TypeError:
+        print('Missing Parameters:', constructor.META['params'])
