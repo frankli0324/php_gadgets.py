@@ -28,5 +28,5 @@ class PendingBroadcast:
         self.protected_events = Generator(func)
 
 
-def construct(app_key, func, param):
+def construct(func, param):
     return serialize(PendingBroadcast(func, param))
