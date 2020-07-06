@@ -1,0 +1,4 @@
+libphpserialize
+click
+pycryptodome
+requests
